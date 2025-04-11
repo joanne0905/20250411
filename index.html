@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <script src="sketch.js"></script> <!-- 確保載入 sketch.js -->
+  </head>
+
+  <body>
+    <!-- 右上角選單 -->
+    <ul class="menu" id="menu">
+      <li><a href="#home" onclick="hideIframe()">首頁</a></li>
+      <li><a href="#about" onclick="hideIframe()">自我介紹</a></li>
+      <li>
+        <a href="#portfolio">作品集</a>
+        <!-- 子選單 -->
+        <ul class="submenu">
+          <li><a href="#" onclick="showIframe('https://hackmd.io/@Eaon7CtdTZ--b0atDxy9WQ/r1r8AU53ye')">第一周</a></li>
+          <li><a href="#" onclick="showIframe('https://hackmd.io/@Eaon7CtdTZ--b0atDxy9WQ/r1r8AU53ye')">第二周</a></li>
+          <li><a href="#" onclick="showIframe('https://hackmd.io/@Eaon7CtdTZ--b0atDxy9WQ/r1r8AU53ye')">第三周</a></li>
+          <li><a href="#" onclick="showIframe('https://hackmd.io/@Eaon7CtdTZ--b0atDxy9WQ/r1r8AU53ye')">第四周</a></li>
+        </ul>
+      </li>
+      <li><a href="#quiz" onclick="hideIframe()">測驗卷</a></li>
+      <li><a href="#videos" onclick="hideIframe()">教學影片</a></li>
+    </ul>
+
+    <!-- 嵌入內容的 iframe -->
+    <iframe id="contentFrame" src=""></iframe>
+
+    <script>
+      // 顯示 iframe 並載入內容
+      function showIframe(url) {
+        const iframe = document.getElementById('contentFrame');
+        iframe.style.display = 'block';
+        iframe.src = url;
+      }
+
+      // 隱藏 iframe
+      function hideIframe() {
+        const iframe = document.getElementById('contentFrame');
+        iframe.style.display = 'none';
+        iframe.src = ''; // 清空 iframe 的內容
+      }
+
+      // 控制選單滑入滑出效果
+      const menu = document.getElementById('menu');
+      let isMenuVisible = false;
+
+      document.addEventListener('mousemove', (event) => {
+        if (event.clientY < 250 && !isMenuVisible) {
+          isMenuVisible = true;
+          menu.style.transition = 'transform 0.3s ease-in-out';
+          menu.style.transform = 'translateY(0)'; // 滑入
+        } else if (event.clientY >= 250 && isMenuVisible) {
+          isMenuVisible = false;
+          menu.style.transition = 'transform 0.3s ease-in-out';
+          menu.style.transform = 'translateY(-100%)'; // 滑出
+        }
+      });
+    </script>
+  </body>
+</html>

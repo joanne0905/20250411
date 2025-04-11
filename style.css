@@ -1,0 +1,93 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+  z-index: -1; /* 確保 canvas (sketch.js 動畫) 在最底層 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 主選單樣式 */
+.menu {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  transform: translateY(-100%); /* 初始位置為隱藏（滑出畫面上方） */
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* 確保選單在畫布之上 */
+  transition: transform 0.5s ease-in-out; /* 滑入滑出動畫 */
+}
+
+.menu li {
+  font-family: "Microsoft JhengHei", Arial, sans-serif;
+  font-size: 18px;
+  position: relative; /* 為子選單定位 */
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: bold;
+}
+
+.menu a:hover {
+  color: #007BFF;
+}
+
+/* 子選單樣式 */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%; /* 子選單顯示在父選單下方 */
+  left: 0;
+  background-color: white; /* 子選單背景顏色 */
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* 確保子選單在畫布之上 */
+}
+
+.menu li:hover .submenu {
+  display: block; /* 滑鼠懸停時顯示子選單 */
+}
+
+.submenu li {
+  margin: 5px 0;
+}
+
+.submenu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.submenu a:hover {
+  color: #007BFF;
+}
+
+/* iframe 樣式 */
+iframe {
+  /*位置在(100，100)*/
+  top: 100px; /* 距離上方 100px */
+  width: calc(100vw - 200px); /* 寬度為視窗寬度減 20px */
+  height: calc(100vh - 200px); /* 高度為視窗高度減 20px */
+  border: none;
+  margin: 10px auto; /* 四周留白 10px */
+  display: none; /* 預設隱藏 */
+  opacity: 1; /* 設定透明度為 1 */
+  z-index: 5; /* 確保 iframe 在畫布之上，但在選單之下 */
+  position: relative;
+}
